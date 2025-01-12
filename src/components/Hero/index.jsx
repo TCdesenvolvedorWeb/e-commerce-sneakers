@@ -1,0 +1,88 @@
+import { imgProducts } from "../../utils";
+import { useContext, useEffect, useState } from "react";
+import { AddToCartContext } from "../../context/QuantityProducts";
+import mitt from "mitt";
+import { RenderHero } from "../Render/Hero";
+const eventBus = mitt();
+
+const Hero = ({ border, borderRadius, height, opacity , none }) => {
+  const { setProductsInCart } = useContext(AddToCartContext);
+  const [products, setProducts] = useState(0);
+  const [product, setProduct] = useState(1);
+  const [attImg, setAttImg] = useState(1);
+  const [expandedPreview, setExpandedPreview] = useState(false);
+  const [close, setClose] = useState(false);
+
+  const handleChangeImgProduct = () => {
+    if (product === 1) {
+      setAttImg(imgProducts[0].product1);
+    } else if (product === 2) {
+      setAttImg(imgProducts[1].product2);
+    } else if (product === 3) {
+      setAttImg(imgProducts[2].product3);
+    } else {
+      setAttImg(imgProducts[3].product4);
+    }
+  };
+
+  const handleClose = () => {
+    if (close === true) {
+      setExpandedPreview(false);
+    }
+  };
+
+  const increase = () => {
+    setProducts(products + 1);
+  };
+
+  const decrement = () => {
+    setProducts(products !== 0 ? products - 1 : 0);
+  };
+
+  const addToCart = () => {
+    setProductsInCart(products);
+    eventBus.emit("Botão clicado", true);
+  };
+
+  const isExpandedPreview = () => {
+    setExpandedPreview(true);
+    if (expandedPreview === false) {
+      setClose(false);
+    }
+  };
+
+  useEffect(() => {
+    handleClose();
+    handleChangeImgProduct();
+  }, [product, close]);
+
+  return (
+    <RenderHero
+      attImg={attImg}
+      isExpandedPreview={isExpandedPreview}
+      expandedPreview={expandedPreview}
+      product={product}
+      setProduct={setProduct}
+      decrement={decrement}
+      products={products}
+      increase={increase}
+      addToCart={addToCart}
+      setClose={setClose}
+      border={border}
+      borderRadius={borderRadius}
+      height={height}
+      opacity={opacity}
+      none={none}
+    />
+  );
+};
+
+Hero.defaultProps = {
+  border: "solid hsl(26, 100%, 55%) 2px",
+  borderRadius: "13px",
+  height: "69px",
+  opacity: "0.3",
+  none: 'none',
+};
+
+export { Hero, eventBus };
