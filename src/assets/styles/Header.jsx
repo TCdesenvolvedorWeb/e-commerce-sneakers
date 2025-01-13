@@ -8,10 +8,9 @@ const HeaderHome = styled.header`
 
   @media (max-width: 475px) {
     border-bottom: none;
-    margin-bottom: 0;
+    margin-bottom: -30px;
     width: 100vw;
     padding: 0 30px;
-    position: absolute;
     background: #fff;
   }
 `;
@@ -266,6 +265,10 @@ const ExpandedCart = styled.div`
 
   @media (max-width: 430px) {
     left: -297px;
+  }
+
+  @media(max-width: 415px){
+    left: -282px;
   }
 
   @media (max-width: 400px) {
