@@ -3,6 +3,8 @@ import { AddToCartContext } from "../../context/QuantityProducts";
 import { eventBus } from "../Hero";
 import { RenderHeader } from "../Render/Header";
 import { FLES } from "../../utils";
+import mitt from "mitt";
+const eventCart = mitt();
 
 const Header = () => {
   const { productsInCart } = useContext(AddToCartContext);
@@ -12,6 +14,7 @@ const Header = () => {
 
   const ShowCart = () => {
     setShowCart( showCart === true ? false : true);
+    eventCart.emit('botton clicked' , true);
   }
 
   const removeProduct = () => {
@@ -47,4 +50,4 @@ const Header = () => {
   return <RenderHeader productsInCart={productsInCart} savedQuantityPoducts={savedQuantityPoducts} showCart={showCart} ShowCart={ShowCart} formatValue={formatValue} removeProduct={removeProduct}/>
 };
 
-export { Header};
+export { Header , eventCart};

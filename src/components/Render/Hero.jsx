@@ -35,7 +35,7 @@ const RenderHero = (props) => {
       <HeroStyle>
         <Products>
           <svg
-            style={width > 475 ? {display: props.none } : null}
+            style={width > 475 || props.hide === true ? {display: props.none } : null}
             className="icon-svg-responsive return"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() =>
@@ -58,7 +58,7 @@ const RenderHero = (props) => {
             onClick={props.isExpandedPreview}
           />
           <svg
-            style={width > 475 ? {display: props.none } : null}
+            style={width > 475 || props.hide === true ? {display: props.none } : null}
             className="icon-svg-responsive next"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() =>
