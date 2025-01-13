@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AddToCartContext } from "../../context/QuantityProducts";
 import mitt from "mitt";
 import { RenderHero } from "../Render/Hero";
-import { eventCart } from "../Header";
+import { eventCart , eventHide } from "../Header";
 const eventBus = mitt();
 
 const Hero = ({ border, borderRadius, height, opacity , none }) => {
@@ -57,9 +57,14 @@ const Hero = ({ border, borderRadius, height, opacity , none }) => {
     handleClose();
     handleChangeImgProduct();
     const listner = (actived) => actived && setHide(hide === true ? false : true);
+    const listnerLabel = (actived) => actived && setHide(hide === true ? false : true);
 
     eventCart.on('botton clicked' , listner);
-    return () => eventCart.off('botton clicked' , listner);
+    eventHide.on('botton clicked' , listnerLabel)
+    return () => {
+      eventCart.off('botton clicked' , listner);
+      eventHide.off('botton clicked' , listnerLabel)
+    }
   }, [product, close , hide]);
 
   return (

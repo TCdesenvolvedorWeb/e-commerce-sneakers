@@ -5,6 +5,7 @@ import { RenderHeader } from "../Render/Header";
 import { FLES } from "../../utils";
 import mitt from "mitt";
 const eventCart = mitt();
+const eventHide = mitt()
 
 const Header = () => {
   const { productsInCart } = useContext(AddToCartContext);
@@ -47,7 +48,7 @@ const Header = () => {
     
   } , [trigger])
 
-  return <RenderHeader productsInCart={productsInCart} savedQuantityPoducts={savedQuantityPoducts} showCart={showCart} ShowCart={ShowCart} formatValue={formatValue} removeProduct={removeProduct}/>
+  return <RenderHeader productsInCart={productsInCart} savedQuantityPoducts={savedQuantityPoducts} showCart={showCart} ShowCart={ShowCart} formatValue={formatValue} removeProduct={removeProduct} eventHide={eventHide}/>
 };
 
-export { Header , eventCart};
+export { Header , eventCart , eventHide};

@@ -28,7 +28,7 @@ const RenderHeader = (props) => {
 
         <nav>
           <input type="checkbox" id="menu-hamburguer" />
-          <label htmlFor="menu-hamburguer">
+          <label htmlFor="menu-hamburguer" onClick={() => props.eventHide.emit('botton clicked' , true)}>
             <div className="menu">
               <span className="hamburguer"></span>
             </div>
