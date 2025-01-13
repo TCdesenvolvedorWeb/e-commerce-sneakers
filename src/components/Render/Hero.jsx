@@ -209,6 +209,7 @@ const RenderHero = (props) => {
             </svg>
 
             <ImgProduct1Style
+              className="expanded"
               src={props.attImg}
               alt="Product"
               onClick={props.isExpandedPreview}

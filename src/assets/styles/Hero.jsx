@@ -108,6 +108,14 @@ const ExpandedPreview = styled.figure`
   .icon-close {
     right: -20px;
   }
+
+  @media(max-width: 475px){
+    width: 300px;
+
+    .expanded{
+      width: 100%;
+    }
+  }
 `;
 const IconClose = styled.img`
   position: absolute;
