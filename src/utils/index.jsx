@@ -21,6 +21,5 @@ const imgProducts = [
       product4: imgPoduct4
     },
   ]
-
-
+  
 export { FLES , imgProducts};

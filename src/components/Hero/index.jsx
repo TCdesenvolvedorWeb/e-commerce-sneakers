@@ -6,7 +6,7 @@ import { RenderHero } from "../Render/Hero";
 import { eventCart , eventHide } from "../Header";
 const eventBus = mitt();
 
-const Hero = ({ border, borderRadius, height, opacity , none }) => {
+const Hero = ({ border = 'solid hsl(26, 100%, 55%) 2px', borderRadius = "13px", height = "69px", opacity = "0.3" , none = 'none' }) => {
   const { setProductsInCart } = useContext(AddToCartContext);
   const [products, setProducts] = useState(0);
   const [product, setProduct] = useState(1);
@@ -27,19 +27,11 @@ const Hero = ({ border, borderRadius, height, opacity , none }) => {
     }
   };
 
-  const handleClose = () => {
-    if (close === true) {
-      setExpandedPreview(false);
-    }
-  };
+  const handleClose = () => close === true && setExpandedPreview(false);
 
-  const increase = () => {
-    setProducts(products + 1);
-  };
+  const increase = () => setProducts(products + 1);
 
-  const decrement = () => {
-    setProducts(products !== 0 ? products - 1 : 0);
-  };
+  const decrement = () => setProducts(products !== 0 ? products - 1 : 0);
 
   const addToCart = () => {
     setProductsInCart(products);
@@ -87,14 +79,6 @@ const Hero = ({ border, borderRadius, height, opacity , none }) => {
       hide={hide}
     />
   );
-};
-
-Hero.defaultProps = {
-  border: "solid hsl(26, 100%, 55%) 2px",
-  borderRadius: "13px",
-  height: "69px",
-  opacity: "0.3",
-  none: 'none',
 };
 
 export { Hero, eventBus };

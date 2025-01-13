@@ -18,17 +18,11 @@ const Header = () => {
     eventCart.emit('botton clicked' , true);
   }
 
-  const removeProduct = () => {
-    setQuantityProducts(0)
-  }
+  const removeProduct = () => setQuantityProducts(0)
 
-  const isActiveTrigger = () => {
-    setTrigger( trigger + 1 );
-  }
+  const isActiveTrigger = () => setTrigger( trigger + 1 );
 
-  const increaseProductsInCart = () =>{
-    setQuantityProducts( productsInCart > 0 && savedQuantityPoducts + productsInCart );
-  }
+  const increaseProductsInCart = () => setQuantityProducts( productsInCart > 0 && savedQuantityPoducts + productsInCart );
 
   const formatValue = () => {
     return new Intl.NumberFormat('pt-BR' , {
